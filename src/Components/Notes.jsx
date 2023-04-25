@@ -22,10 +22,10 @@ export default class Notes extends Component {
     .then(() => this.loadFromServer())
   }
 
-  addToServer = (text) => {
+  addToServer = ({ id = 0, content }) => {
     fetch(import.meta.env.VITE_API_URL, {
       method: 'POST',
-      body:  text
+      body: JSON.stringify({ id, content }),
     }).then(() => this.loadFromServer())
   }
 
