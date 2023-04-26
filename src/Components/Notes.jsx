@@ -11,7 +11,6 @@ export default class Notes extends Component {
   componentDidMount = () => this.loadFromServer();
 
   loadFromServer = () => {
-    console.log('work load');
     fetch(import.meta.env.VITE_API_URL)
     .then(response => response.json())
     .then(notes => this.setState({ notes }))
@@ -22,10 +21,10 @@ export default class Notes extends Component {
     .then(() => this.loadFromServer())
   }
 
-  addToServer = ({ id = 0, content }) => {
+  addToServer = (text) => {
     fetch(import.meta.env.VITE_API_URL, {
       method: 'POST',
-      body: JSON.stringify({ id, content }),
+      body: text,
     }).then(() => this.loadFromServer())
   }
 
